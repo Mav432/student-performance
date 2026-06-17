@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de rendimiento académico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Predicción de rendimiento académico</h1>
+
+    <form method="POST">
+        <label>Horas estudiadas</label>
+        <input type="number" name="hours_studied" min="0" step="1" required>
+
+        <label>Calificaciones anteriores</label>
+        <input type="number" name="previous_scores" min="0" max="100" step="1" required>
+
+        <label>Actividades extracurriculares</label>
+        <select name="extracurricular" required>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+        </select>
+
+        <label>Horas de sueño</label>
+        <input type="number" name="sleep_hours" min="0" step="1" required>
+
+        <label>Cuestionarios de práctica realizados</label>
+        <input type="number" name="sample_papers" min="0" step="1" required>
+
+        <button type="submit">Predecir</button>
+    </form>
+
+    {% if prediccion is not none %}
+        <div class="resultado">
+            Índice de desempeño académico estimado: {{ prediccion }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
